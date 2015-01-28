@@ -1,6 +1,8 @@
 branch-defaults:
   default:
     environment: isthe7runningcom-dev
+  master:
+    environment: isthe7runningcom-dev
 global:
   application_name: isthe7running.com
   default_ec2_keyname: aws-eb

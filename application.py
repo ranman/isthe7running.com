@@ -19,8 +19,11 @@ def index():
     if status == "GOOD SERVICE":
         return render_template('index.html', status="Yes")
     else:
+        status_text = "Nope."
         text = saxutils.unescape(line.find('text').text)
-        return render_template('index.html', status="Nope", text=text)
+        if status == "SERVICE CHANGE":
+            status_text = "Maybe?"
+        return render_template('index.html', status=status_text, text=text)
 
 if __name__ == "__main__":
     application.run(debug=True)
