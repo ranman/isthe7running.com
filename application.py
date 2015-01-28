@@ -3,6 +3,8 @@ from flask import render_template
 from xml.etree import ElementTree
 from xml.sax import saxutils
 import requests
+import requests_cache
+requests_cache.install_cache('mta_cache', expire_after=120)
 
 data_url = "http://web.mta.info/status/serviceStatus.txt"
 application = Flask(__name__)
