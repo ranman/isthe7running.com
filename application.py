@@ -10,11 +10,12 @@ data_url = "http://web.mta.info/status/serviceStatus.txt"
 application = Flask(__name__)
 
 
-@application.route('/')
-def index():
+@application.route('/', defaults={'subline': 7})
+@application.route('/<subline>')
+def index(subline):
     resp = requests.get(data_url)
     tree = ElementTree.fromstring(resp.content)
-    line = tree.find("./subway/line[name='7']")
+    line = tree.find("./subway/line[name='{}']".format(subline))
     status = line.find('status').text
     if status == "GOOD SERVICE":
         return render_template('index.html', status="Yes")
